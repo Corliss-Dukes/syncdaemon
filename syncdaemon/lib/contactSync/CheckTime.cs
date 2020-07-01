@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace syncdaemon
 {
-    class CheckTime
+    public class CheckTime
     {
         ///<summary>
         /// This will run a dateTime check. If it is 11:00 PM (2300 hrs) it will run the NightlySync() function.

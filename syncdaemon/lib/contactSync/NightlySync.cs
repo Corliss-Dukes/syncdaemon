@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace syncdaemon
 {
-    class NightlySync
+    public class NightlySync
     {
         ///<summary>
         /// This is the main method of the app. First it querys the db to get a list of updated patient info.

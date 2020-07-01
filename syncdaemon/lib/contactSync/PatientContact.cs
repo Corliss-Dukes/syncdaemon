@@ -5,7 +5,7 @@ using Microsoft.Graph;
 
 namespace syncdaemon
 {
-    class PatientContact
+    public class PatientContact
     {
         ///<summary>
         ///This is the method for processing the SQL Patient object into a Microsoft Graph Contact object
