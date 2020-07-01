@@ -13,7 +13,7 @@ namespace syncdaemon
         {
             DateTime dt = DateTime.Now;
             Console.WriteLine(dt + " execute RunCheck");
-            if (dt.TimeOfDay.Hours == 23)
+            if (dt.TimeOfDay.Hours == 23) //23 = 11:00PM
             {
                 Logger.log("runLogger", "Initialize NightlySync()");
                 new NightlySync().RunSync(config);

@@ -18,8 +18,9 @@ namespace syncdaemon
 
             RecuringTask(() => ct.RunCheck(config), 60, cts.Token);
 
-            // var ns = new NightlySync();  only use this to initial fill all users contacts
-            // ns.RunSync(config);
+            // ***WARNING*** only use this to initial fill all users contacts
+            // var init = new InitialSync();
+            // init.RunInit(config);
 
             // This is the daemon start function.  This goes at the bottom
             await builder.RunConsoleAsync();
@@ -90,7 +91,6 @@ namespace syncdaemon
             if (tm > 0) tm = (tm * 60);
             int ts = t.Second + tm;
             return 3600 - ts;
-            // return 60 - t.Second;
         }
 
     }

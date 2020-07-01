@@ -21,7 +21,6 @@ namespace syncdaemon
             {
                 var clist = processChangeList(plist);
                 postChangelist(clist, config);
-                // initialFill(clist, config); only use this to initial fill all users contacts
             }
         }
 
@@ -36,7 +35,6 @@ namespace syncdaemon
             {
                 var list = db.Patient.Select(p => p)
                            .Where(p => p.TodaysDate > DateTime.Now.AddHours(-24)).ToList();
-                // var list = db.Patient.Select(p => p).ToList(); only use this with initial fill
                 Logger.log("changeLog", list.Count().ToString());
                 return list;
             }
@@ -64,7 +62,7 @@ namespace syncdaemon
         ///<param name="config">The configuration object</param>
         static async void postChangelist(List<Contact> list, IConfigurationRoot config)
         {
-            var target = config.GetSection("targetUserId").GetChildren().Select(x => x.Value).ToArray();
+            var target = config.GetSection("targetUserId").GetChildren().Select(x => x.Value).ToList();
             var client = new GraphClient().getClient(config);
             foreach (var t in target) //for each Corliss User
             {
@@ -162,48 +160,6 @@ namespace syncdaemon
             {
                 Logger.log("errorLog", e.Message);
                 return false;
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-        ///<summary>
-        /// This function should not be used in production. This will read the db, and add all contacts to MS Contacts
-        ///</summary>
-        static async void initialFill(List<Contact> list, IConfigurationRoot config)
-        {
-            var target = config.GetSection("targetUserId").GetChildren().Select(x => x.Value).ToArray();
-            int len = 0;
-            var client = new GraphClient().getClient(config);
-
-            List<Contact> allContacts = new List<Contact>();
-            var contacts = await client.Users[target[0]].Contacts.Request().GetAsync();
-            allContacts.AddRange(contacts.CurrentPage);
-            while (contacts.NextPageRequest != null)
-            {
-                contacts = await contacts.NextPageRequest.GetAsync();
-                allContacts.AddRange(contacts.CurrentPage);
-            }
-
-            var ids = allContacts.Select(i => i.FileAs).ToArray();
-
-            foreach (Contact c in list)
-            {
-                if (!ids.Contains(c.FileAs))
-                {
-                    await client.Users[target[0]].Contacts
-                            .Request()
-                            .AddAsync(c);
-                    len++;
-                }
             }
         }
     }
