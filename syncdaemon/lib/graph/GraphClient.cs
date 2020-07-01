@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Identity.Client;
 using Microsoft.Graph;
 using Microsoft.Extensions.Configuration;
