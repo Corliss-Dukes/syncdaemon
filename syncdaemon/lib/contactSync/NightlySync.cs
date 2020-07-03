@@ -10,7 +10,7 @@ namespace syncdaemon
     public class NightlySync
     {
         ///<summary>
-        /// This is the main method of the app. First it querys the db to get a list of updated patient info.
+        /// This is the main method of the app. First it queries the db to get a list of updated patient info.
         /// If the list count is not 0, it runs the 2 helper methods to process the contact and post it to MS Contacts.
         ///</summary>
         ///<param name="config">The configuration object</param>
@@ -111,7 +111,6 @@ namespace syncdaemon
                         if (y) count++;
                     }
                 }
-                //DONE: don't forget to log changes
                 string st = (count.ToString() + " contacts synced for User " + t);
                 Logger.log("runLogger", st);
             }
@@ -125,7 +124,7 @@ namespace syncdaemon
         ///<param name="target">The User ID</param>
         ///<param name="client">The GraphServiceClient that is used for Graph api access</param>
         ///<param name="id">The Contact Id used to identify the correct Contact to delete</param>
-        ///<returns>Task{bool}</returns>
+        ///<returns>Task{boolean}</returns>
         static async Task<bool> deleteOldContact(string target, GraphServiceClient client, string id)
         {
             try
@@ -136,7 +135,6 @@ namespace syncdaemon
             }
             catch (Exception e)
             {
-                //DONE: log the failure
                 Logger.log("errorLog", e.Message);
                 return false;
             }
@@ -147,7 +145,7 @@ namespace syncdaemon
         ///<param name="target">The User ID</param>
         ///<param name="client">The GraphServiceClient that is used for Graph access</param>
         ///<param name="c">The Contact Object to add to the User's Contact list</param>
-        ///<returns>Task{bool}</returns>
+        ///<returns>Task{boolean}</returns>
         static async Task<bool> addUpdatedContact(string target, GraphServiceClient client, Contact c)
         {
             try

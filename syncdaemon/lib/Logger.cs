@@ -8,7 +8,7 @@ namespace syncdaemon
         ///<summary>
         /// This is the log function. It brings in a log type and a string to be logged. Based on the log type, a switch statement will route the string to be handled.
         ///</summary>
-        ///<param name="logType">A string that will intiate the switch case</param>
+        ///<param name="logType">A string that will initiate the switch case</param>
         ///<param name="st">A string of information to be logged</param>
         public static void log(string logType, string st)
         {
@@ -43,7 +43,7 @@ namespace syncdaemon
         // a function that logs the catch errors
         private static void errorLog(string path, string st)
         {
-            string temp = ("ERROR! An error occured: " + st);
+            string temp = ("ERROR! An error occurred: " + st);
             postLog(path, temp);
         }
 

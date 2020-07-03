@@ -11,7 +11,7 @@ namespace syncdaemon
         ///This is the method for processing the SQL Patient object into a Microsoft Graph Contact object
         ///</summary>
         ///<param name="patient">This is the object from the SQL query</param>
-        ///<returns>A Microsft Graph Contact object</returns>
+        ///<returns>A Microsoft Graph Contact object</returns>
         public Contact NewContact(Patient patient)
         {
             var newContact = new Contact()
@@ -44,7 +44,6 @@ namespace syncdaemon
                     : patient.Address1;
             if (patient.Email != null)
             {
-                //DONE: validate format and domain extension of email
                 bool f = isFormatted(patient.Email) ? true : false;
                 bool v = f ? isValidExtension(patient.Email) : false;
                 newContact.EmailAddresses = v ? newEmail(patient.Email, (patient.FirstName + " " + patient.LastName)) : null;
@@ -56,7 +55,7 @@ namespace syncdaemon
 
         //******************************** HELPER METHODS ******************
         ///<summary>
-        ///Checks that an email address is in correct email format by attempting to create a System.Net.Mail.MailAddress object from the proveded string.
+        ///Checks that an email address is in correct email format by attempting to create a System.Net.Mail.MailAddress object from the provided string.
         ///<example>name@domain.extension</example>
         ///</summary>
         ///<param name="email">A string that looks like an email address</param>
@@ -89,7 +88,7 @@ namespace syncdaemon
             return domexts.Contains(ext) ? true : false;
         }
         ///<summary>
-        ///Splits the email adress on "." and grabs the last word in the array. This should be the exentsion.
+        ///Splits the email address on "." and grabs the last word in the array. This should be the extension.
         ///</summary>
         ///<param name="email">A string email address</param>
         ///<returns>String</returns>
@@ -105,7 +104,7 @@ namespace syncdaemon
         ///</summary>
         ///<param name="email">A string email address</param>
         ///<param name="name">A string name</param>
-        ///<returns>MS Conctact EmailAddress object</returns>
+        ///<returns>MS Contact EmailAddress object</returns>
         private static List<EmailAddress> newEmail(string email, string name)
         {
             List<EmailAddress> temp = new List<EmailAddress>()
