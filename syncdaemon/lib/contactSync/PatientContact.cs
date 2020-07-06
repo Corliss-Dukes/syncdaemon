@@ -46,14 +46,16 @@ namespace syncdaemon
             {
                 bool f = isFormatted(patient.Email) ? true : false;
                 bool v = f ? isValidExtension(patient.Email) : false;
-                newContact.EmailAddresses = v ? newEmail(patient.Email, (patient.FirstName + " " + patient.LastName)) : null;
+                newContact.EmailAddresses = v 
+                    ? newEmail(patient.Email, (patient.FirstName + " " + patient.LastName)) 
+                    : null;
                 if (!v) Logger.log("errorLog", ("Bad extension " + patient.Email));
             };
             return newContact;
         }
 
 
-        //******************************** HELPER METHODS ******************
+        //******************************** HELPER FUNCTIONS ******************
         ///<summary>
         ///Checks that an email address is in correct email format by attempting to create a System.Net.Mail.MailAddress object from the provided string.
         ///<example>name@domain.extension</example>

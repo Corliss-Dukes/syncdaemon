@@ -25,7 +25,7 @@ namespace syncdaemon
         }
 
         ///<summary>
-        ///This function makes a sql call and grabs any Patients that have been edited in the last 24hrs
+        ///This method makes a sql call and grabs any Patients that have been edited in the last 24hrs
         ///</summary>
         ///<param name="config">The configuration object</param>
         ///<returns>List{Patient}</returns>
@@ -41,7 +41,7 @@ namespace syncdaemon
         }
 
         ///<summary>
-        ///This function brings in a List of Patient objects from SQL and processes them into MS Contact objects
+        ///This method brings in a List of Patient objects from SQL and processes them into MS Contact objects
         ///</summary>
         ///<param name="plist">The list of Patients to be processed</param>
         ///<returns>List{Contact}</returns>
@@ -56,7 +56,7 @@ namespace syncdaemon
         }
 
         ///<summary>
-        ///This function will loop over a list of Corliss Users and for each User get all their contacts, set updated contact ids, delete any old contacts, and add the new or edited contact.
+        ///This method will loop over a list of Corliss Users and for each User get all their contacts, set updated contact ids, delete any old contacts, and add the new or edited contact.
         ///</summary>
         ///<param name="list">The newly processed list of MS Contact objects</param>
         ///<param name="config">The configuration object</param>

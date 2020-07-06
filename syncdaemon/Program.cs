@@ -18,7 +18,7 @@ namespace syncdaemon
 
             RecuringTask(() => ct.RunCheck(config), 60, cts.Token);
 
-            // ***WARNING*** only use this to initial fill all users contacts
+            // ***WARNING*** Execute once to fill all User Contacts folders with all patients from the db.
             // var init = new InitialSync();
             // init.RunInit(config);
 
@@ -59,7 +59,7 @@ namespace syncdaemon
         }
 
         /// <summary>
-        /// This method brings will run while there is no cancellation token present. The Task.Delay method is used to specify the amount of time to elapse between function executions.
+        /// This method will run while there is no cancellation token present. The Task.Delay method is used to specify the amount of time to elapse between function executions.
         ///</summary>
         /// <param name="action">a function to be executed
         ///<example>Console.Writeline("Hello World");</example>

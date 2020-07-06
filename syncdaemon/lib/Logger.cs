@@ -6,7 +6,7 @@ namespace syncdaemon
     public class Logger
     {
         ///<summary>
-        /// This is the log function. It brings in a log type and a string to be logged. Based on the log type, a switch statement will route the string to be handled.
+        /// This is the log method. It brings in a log type and a string to be logged. Based on the log type, a switch statement will route the string to be handled.
         ///</summary>
         ///<param name="logType">A string that will initiate the switch case</param>
         ///<param name="st">A string of information to be logged</param>

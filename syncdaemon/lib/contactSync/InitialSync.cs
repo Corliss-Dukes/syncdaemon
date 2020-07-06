@@ -6,10 +6,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace syncdaemon
 {
+    // ****** WARNING ******  This should only be executed once. NightlySync() is the main method
     public class InitialSync
     {
         ///<summary>
-        /// This is the initial method. This should only be run once, to fill all User Contacts folders with the items from the db.
+        /// This is the initial method. Execute once to fill all User Contacts folders with all patients from the db.
         ///</summary>
         ///<param name="config">The configuration object</param>
         public void RunInit(IConfigurationRoot config)
@@ -18,12 +19,12 @@ namespace syncdaemon
             if (plist.Count() > 0)
             {
                 var clist = processFromSql(plist);
-                initialFill(clist, config);
+                //initialFill(clist, config);
             }
         }
 
         ///<summary>
-        ///This function makes a sql call and grabs any Patients that have been edited in the last 24hrs
+        ///This method makes a sql call and returns all patients in the db
         ///</summary>
         ///<param name="config">The configuration object</param>
         ///<returns>List{Patient}</returns>
@@ -32,13 +33,13 @@ namespace syncdaemon
             using (var db = new AccTestContext(config))
             {
                 var list = db.Patient.Select(p => p).ToList();
-                Logger.log("changeLog", list.Count().ToString());
+                Logger.log("runLogger", list.Count().ToString() + " patients pulled from db");
                 return list;
             }
         }
 
         ///<summary>
-        ///This function brings in a List of Patient objects from SQL and processes them into MS Contact objects
+        ///This method takes the List of Patient objects and processes them into MS Contact objects
         ///</summary>
         ///<param name="plist">The list of Patients to be processed</param>
         ///<returns>List{Contact}</returns>
@@ -53,7 +54,8 @@ namespace syncdaemon
         }
 
         ///<summary>
-        /// This function should not be used in production. This will read the db, and add all contacts to MS Contacts
+        /// This method adds the List of Contacts to MS Contacts for each User
+        ///****** WARNING ******  This should only be executed once. NightlySync() is the main method
         ///</summary>
         static async void initialFill(List<Contact> list, IConfigurationRoot config)
         {

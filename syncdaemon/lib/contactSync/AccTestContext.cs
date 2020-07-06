@@ -5,8 +5,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace syncdaemon
 {
+    //TODO: Get access to production DB and set constring, new dbContext
     ///<summary>
-    ///This is the db context for the SQL database. This was scaffolded using Entity Framework - dbcontext scaffold
+    ///This is the db context for the TEST SQL database. This was scaffolded using Entity Framework - dbcontext scaffold
     ///</summary>
     public partial class AccTestContext : DbContext
     {
