@@ -85,7 +85,7 @@ namespace syncdaemon
         ///<returns>Boolean</returns>
         private static bool isValidExtension(string email)
         {
-            string[] domexts = System.IO.File.ReadAllLines(@"lib\validate.txt"); //get relative path
+            string[] domexts = System.IO.File.ReadAllLines(@"lib\assets\validate.txt"); //get relative path
             string ext = getExtension(email);
             return domexts.Contains(ext) ? true : false;
         }
