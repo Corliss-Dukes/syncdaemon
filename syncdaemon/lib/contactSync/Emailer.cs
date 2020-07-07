@@ -9,8 +9,9 @@ namespace syncdaemon
 {
     public class Emailer
     {
-        public async void send(IConfigurationRoot config, GraphServiceClient client)
+        public async void send(IConfigurationRoot config)
         {
+            var client = new GraphClient().getClient(config);
             string sendTo = config.GetSection("sendToEmail").Value;
             var message = new Message
             {

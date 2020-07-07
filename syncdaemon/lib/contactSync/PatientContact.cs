@@ -49,7 +49,7 @@ namespace syncdaemon
                 newContact.EmailAddresses = v 
                     ? newEmail(patient.Email, (patient.FirstName + " " + patient.LastName)) 
                     : null;
-                if (!v) Logger.log("errorLog", ("Bad extension " + patient.Email));
+                if (!v) Logger.log("badImail", patient.Email + " " + patient.FirstName + " " + patient.LastName);
             };
             return newContact;
         }
