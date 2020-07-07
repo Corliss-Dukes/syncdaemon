@@ -1,3 +1,20 @@
 **asyncdaemon sync logs copyright Corliss Optomitrists 2020**
   
 
+7/7/2020 10:09:55 AM ERROR! An error occurred: Code: ResourceNotFound
+Message: Resource could not be discovered.
+Inner error:
+	AdditionalData:
+	date: 2020-07-07T17:09:56
+	request-id: 1d038852-ce1c-41fd-9a11-756a21a340e2
+ClientRequestId: 1d038852-ce1c-41fd-9a11-756a21a340e2
+
+7/7/2020 10:11:46 AM ERROR! An error occurred: Code: ResourceNotFound
+Message: Resource could not be discovered.
+Inner error:
+	AdditionalData:
+	date: 2020-07-07T17:11:47
+	request-id: 14b2e522-d85b-4e9e-a406-5bd4517e5d04
+ClientRequestId: 14b2e522-d85b-4e9e-a406-5bd4517e5d04
+
+7/7/2020 11:13:13 AM email sent successfully

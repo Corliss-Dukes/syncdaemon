@@ -13,10 +13,13 @@ namespace syncdaemon
             var builder = new Builder().builder(args);
             var cts = new CancellationTokenSource();
             var config = LoadAppSettings();
-            var client = new GraphClient().getClient(config); // This represents the Graph Client object            
+            var client = new GraphClient().getClient(config); // This represents the Graph Client object           
             var ct = new CheckTime();
 
-            RecuringTask(() => ct.RunCheck(config), 60, cts.Token);
+            var e = new Emailer();
+            e.send(config, client);
+
+            //RecuringTask(() => ct.RunCheck(config), 60, cts.Token);
 
             // ***WARNING*** Execute once to fill all User Contacts folders with all patients from the db.
             // var init = new InitialSync();
@@ -36,8 +39,9 @@ namespace syncdaemon
             try
             {
                 var config = new ConfigurationBuilder()
-                                .SetBasePath(System.IO.Directory.GetCurrentDirectory())
-                                .AddJsonFile("appsettings.json", false, true)
+                                //.SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                                //.AddJsonFile("appsettings.json", false, true)
+                                .AddJsonFile("C:/Users/Kcils/Desktop/syncdaemon/syncdaemon/syncdaemon/appsettings.json", false, true)
                                 .Build();
 
                 if (string.IsNullOrEmpty(config["applicationId"]) ||
