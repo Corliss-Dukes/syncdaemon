@@ -43,8 +43,8 @@ Microsoft Visual Studio Community 2019 (Version 16.5.0)
 
 ## Recent Updates
 
-#### V 1.1
-*Added an `InitialSync` function to fill all Users' contact lists* - 30 Jun 2020
+#### V 1.2
+*Added a dedicated email validator, separate from `NightlySync()` in the `TimeCheck()`* - 9 Jul 2020
 
 ---------------------------
 
@@ -112,7 +112,8 @@ To quit the application using the command line:
 
 
 ## Change Log
-* 1.1: Added an `InitialSync` function to fill all Users' contact lists* - 30 Jun 2020
+* 1.1: Added an `InitialSync()` function to fill all Users' contact lists* - 30 Jun 2020
+* 1.2: Added a dedicated email validator, separate from `NightlySync()` in the `TimeCheck()` - 9 Jul 2020
 
 ------------------------------
 
