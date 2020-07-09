@@ -15,7 +15,7 @@ namespace syncdaemon
         ///</summary>
         ///<param name="config">The configuration object</param>
         public void RunSync(IConfigurationRoot config)
-        {
+        {            
             var plist = fetchChangelist(config);
             if (plist.Count() > 0)
             {
@@ -34,7 +34,8 @@ namespace syncdaemon
             using (var db = new AccTestContext(config))
             {
                 var list = db.Patient.Select(p => p)
-                           .Where(p => p.TodaysDate > DateTime.Now.AddHours(-24)).ToList();
+                           //.Where(p => p.TodaysDate > DateTime.Now.AddHours(-24)).ToList();
+                           .ToList();
                 Logger.log("changeLog", list.Count().ToString());
                 return list;
             }

@@ -12,7 +12,7 @@ namespace syncdaemon
         ///<param name="st">A string of information to be logged</param>
         public static void log(string logType, string st)
         {
-            string path = @"lib\log.txt";
+            string path = @"C:\Users\Kcils\Desktop\syncdaemon\syncdaemon\syncdaemon\lib\log.txt";
             switch (logType)
             {
                 case "changeLog":

@@ -51,9 +51,9 @@ namespace syncdaemon
 
                 entity.Property(e => e.City).HasMaxLength(255);
 
-                entity.Property(e => e.Dob)
-                    .HasColumnName("DOB")
-                    .HasColumnType("datetime");
+                //entity.Property(e => e.Dob)
+                //    .HasColumnName("DOB")
+                //    .HasColumnType("datetime");
 
                 entity.Property(e => e.Email).HasMaxLength(255);
 
@@ -75,7 +75,7 @@ namespace syncdaemon
                     .HasColumnName("Middle Name")
                     .HasMaxLength(255);
 
-                entity.Property(e => e.Nickname).HasMaxLength(255);
+                //entity.Property(e => e.Nickname).HasMaxLength(255);
 
                 entity.Property(e => e.OtherPhone)
                     .HasColumnName("Other Phone")
@@ -91,11 +91,11 @@ namespace syncdaemon
 
                 entity.Property(e => e.State).HasMaxLength(255);
 
-                entity.Property(e => e.Suffix).HasMaxLength(255);
+                //entity.Property(e => e.Suffix).HasMaxLength(255);
 
-                entity.Property(e => e.TodaysDate)
-                    .HasColumnName("Todays Date")
-                    .HasColumnType("datetime");
+                //entity.Property(e => e.TodaysDate)
+                //    .HasColumnName("Todays Date")
+                //    .HasColumnType("datetime");
 
                 entity.Property(e => e.WorkPhone)
                     .HasColumnName("Work Phone")

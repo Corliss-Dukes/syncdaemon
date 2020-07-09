@@ -20,7 +20,7 @@ namespace syncdaemon
                 GivenName = patient.FirstName,
                 Surname = patient.LastName,
                 MiddleName = patient.MiddleName,
-                NickName = patient.Nickname,
+                //NickName = patient.Nickname,
                 BusinessPhones = new List<String>()
                 {
                     patient.WorkPhone
@@ -37,7 +37,7 @@ namespace syncdaemon
                     State = patient.State
                 },
 
-                Birthday = new DateTimeOffset(DateTime.Parse(patient.Dob.ToString()))
+                //Birthday = new DateTimeOffset(DateTime.Parse(patient.Dob.ToString()))
             };
             newContact.HomeAddress.Street = patient.Address2 != null
                     ? (patient.Address1 + " " + patient.Address2)
@@ -49,7 +49,7 @@ namespace syncdaemon
                 newContact.EmailAddresses = v 
                     ? newEmail(patient.Email, (patient.FirstName + " " + patient.LastName)) 
                     : null;
-                if (!v) Logger.log("errorLog", ("Bad extension " + patient.Email));
+                if (!v) Logger.log("badEmail", patient.Email + " " + patient.FirstName + " " + patient.LastName);
             };
             return newContact;
         }
@@ -85,7 +85,7 @@ namespace syncdaemon
         ///<returns>Boolean</returns>
         private static bool isValidExtension(string email)
         {
-            string[] domexts = System.IO.File.ReadAllLines(@"lib\assets\validate.txt"); //get relative path
+            string[] domexts = System.IO.File.ReadAllLines(@"../syncdaemon/lib/assets/validate.txt");
             string ext = getExtension(email);
             return domexts.Contains(ext) ? true : false;
         }
