@@ -24,9 +24,6 @@ namespace syncdaemon
                 case "runLogger":
                     runLogger(path, st);
                     break;
-                case "badEmail":
-                    badEmail(path, st);
-                    break;
             }
         }
 
@@ -48,13 +45,6 @@ namespace syncdaemon
         {
             string temp = ("ERROR! An error occurred: " + st);
             postLog(path, temp);
-        }
-
-        private static void badEmail(string path, string st)
-        {
-            //TODO: split incoming message to get name and email separate
-            //TODO: log the bad email
-            //TODO: send an email about the bad email
         }
 
         ///<summary>

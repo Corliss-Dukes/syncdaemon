@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.Hosting;
 
 namespace syncdaemon
@@ -16,10 +17,10 @@ namespace syncdaemon
             /*var client = new GraphClient().getClient(config);*/ // This represents the Graph Client object           
             var ct = new CheckTime();
 
-            var e = new Emailer();
-            e.send(config);
+            //var e = new Emailer();
+            //e.send(config);
 
-            //RecuringTask(() => ct.RunCheck(config), 60, cts.Token);
+            RecuringTask(() => ct.RunCheck(config), 60, cts.Token);
 
             // ***WARNING*** Execute once to fill all User Contacts folders with all patients from the db.
             // var init = new InitialSync();
@@ -39,9 +40,9 @@ namespace syncdaemon
             try
             {
                 var config = new ConfigurationBuilder()
-                                //.SetBasePath(System.IO.Directory.GetCurrentDirectory())
-                                //.AddJsonFile("appsettings.json", false, true)
-                                .AddJsonFile("C:/Users/Kcils/Desktop/syncdaemon/syncdaemon/syncdaemon/appsettings.json", false, true)
+                                .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                                .AddJsonFile("appsettings.json", false, true)
+                                //.AddJsonFile(@"C:\Users\Kcils\Desktop\syncdaemon\syncdaemon\syncdaemon\appsettings.json", false, true) //*use with VS IIS
                                 .Build();
 
                 if (string.IsNullOrEmpty(config["applicationId"]) ||
@@ -53,7 +54,6 @@ namespace syncdaemon
                 {
                     return null;
                 }
-
                 return config;
             }
             catch (System.IO.FileNotFoundException)
