@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 using Microsoft.Graph;
 
@@ -58,10 +57,13 @@ namespace syncdaemon
             {
                 string log = "No invalid emails found";
                 Logger.log("runLogger", log);
-            }
-            
+            }            
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="config">The IConfigurationRoot object to pass to the db context</param>
+        /// <returns>List of string[]</returns>
         private static List<string[]> getEmailAdds(IConfigurationRoot config)
         {
             using (var db = new AccTestContext(config))
@@ -70,7 +72,11 @@ namespace syncdaemon
                 return list;
             }
         }
-
+        /// <summary>
+        /// This function handles validating the email addresses and returns a list of names to be sent in an email
+        /// </summary>
+        /// <param name="list">A list of string arrays that contain an EmailAddress, FirstName, and LastName</param>
+        /// <returns>List of strings</returns>
         private static List<string> checkForBad(List<string[]> list)
         {
             var temp = new List<string>();
@@ -85,12 +91,25 @@ namespace syncdaemon
             return temp;
         }
 
+        //******************************** HELPER FUNCTIONS ******************
+
+        /// <summary>
+        /// Brings in a string.  Runs the two validator functions and returns a bool.
+        /// </summary>
+        /// <param name="s">A string that looks like an email address</param>
+        /// <returns>Boolean</returns>
         private static bool validate(string s)
         {
             bool f = isFormatted(s) ? true : false;
             bool v = f ? isValidExtension(s) : false;
             return v;
         }
+        ///<summary>
+        ///Checks that an email address is in correct email format by attempting to create a System.Net.Mail.MailAddress object from the provided string.
+        ///<example>name@domain.extension</example>
+        ///</summary>
+        ///<param name="email">A string that looks like an email address</param>
+        ///<returns>Boolean</returns>
         private static bool isFormatted(string email)
         {
             try
@@ -104,12 +123,25 @@ namespace syncdaemon
                 return false;
             }
         }
+        ///<summary>
+        ///Checks that a domain extension is valid according to IANA.org
+        /// domain list can be found at https://data.iana.org/TLD/tlds-alpha-by-domain.txt 
+        /// .txt file created 06/2020 from current domain list
+        ///<example>.com, .net, .tech, etc.</example>
+        ///</summary>
+        ///<param name="email">A string email address</param>
+        ///<returns>Boolean</returns>
         private static bool isValidExtension(string email)
         {
             string[] domexts = System.IO.File.ReadAllLines(@"../syncdaemon/lib/assets/validate.txt");
             string ext = getExtension(email);
             return domexts.Contains(ext) ? true : false;
         }
+        ///<summary>
+        ///Splits the email address on "." and grabs the last word in the array. This should be the extension.
+        ///</summary>
+        ///<param name="email">A string email address</param>
+        ///<returns>String</returns>
         private static string getExtension(string email)
         {
             char splitter = '.';
